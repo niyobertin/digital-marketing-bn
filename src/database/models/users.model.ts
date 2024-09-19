@@ -17,7 +17,7 @@ const userSchema = new Schema(
         type: String,
         required: true,
      },
-     SecondName: {
+     secondName: {
         type: String,
         required: false,
      },

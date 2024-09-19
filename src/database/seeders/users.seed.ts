@@ -6,7 +6,7 @@ const seedUsers = async () => {
   const users: Array<any> = [
     {
       firstName: 'Niyonkuru',
-      lastName: 'Bertin',
+      secondName: 'Bertin',
       gender:'male',
       dob: new Date('2001-07-24'),
       email: 'niyonkurubbertin@gmail.com',
@@ -15,7 +15,7 @@ const seedUsers = async () => {
     },
     {
         firstName: 'Niyonkuru',
-        lastName: 'Bertin',
+        secondName: 'Bertin',
         gender:'male',
         dob: new Date('2001-07-24'),
         email: 'nniyonkurubertin@gmail.com',
@@ -24,7 +24,7 @@ const seedUsers = async () => {
     },
     {
         firstName: 'Niyonkuru',
-        lastName: '',
+        secondName: '',
         gender:'male',
         dob: new Date('2001-07-24'),
         email: 'niyonkurubertin50@gmail.com',
