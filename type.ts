@@ -12,3 +12,13 @@ export interface ILogin{
     email:string;
     password:string
 }
+
+export interface IProduct {
+    name: string;
+    images: string[];
+    description: string;
+    categories: string;
+    price: number;
+    createdBy: string;
+    createdAt: Date;
+  }
