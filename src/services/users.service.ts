@@ -1,4 +1,4 @@
-import { IUser } from "../../type";
+import { ILogin, IUser } from "../../type";
 import { User } from "../database/models/users.model";
 import { hashedPassword } from "../utils/hashPassword";
 
@@ -25,4 +25,14 @@ export const userRegister = async(user:IUser) => {
             password:hashPassword
     });
     return users;
+};
+
+export const userLogin = async(email:string) =>{
+    try {
+        const user = await User.find({email:email});
+        return user;
+    } catch (err: any) {
+      throw new Error(err.message);
+    }
+    
 }

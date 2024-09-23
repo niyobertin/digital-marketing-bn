@@ -1,6 +1,8 @@
 import { Request,Response } from "express";
 import { IUser } from "../../type";
-import { userRegister,getAllUsers } from "../services/users.service";
+import { userRegister,getAllUsers,userLogin } from "../services/users.service";
+import { generateToken } from "../utils/jwtokens";
+import { comparePasswords } from "../utils/comperePassword";
 
 export const getUsers = async (req: Request, res: Response) => {
     try {
@@ -47,4 +49,38 @@ export const createUser = async (req: Request, res: Response) => {
       return res.status(500).json({ error: err });
     }
   };
-  
+
+  export const usersLogin = async (req: Request, res: Response) => {
+    const { email, password } = req.body;
+    const user:any = await userLogin(email);
+    let accessToken;
+    if(!user || user.length === 0){
+      res.status(401).json({
+        status: 401,
+        message: " Invalid credentials!",
+      });
+    }else{
+      const userInfo:any = {
+        id:user[0]._id,
+        firstName:user[0].firstName,
+        secondName:user[0].secondName,
+        role:user[0].role,
+        email:user[0].email
+      }
+      accessToken  = await generateToken(userInfo)
+      const isPasswordMatch = await comparePasswords(password,user[0].password);
+      if(!isPasswordMatch){
+        res.status(401).json({
+          status: 401,
+          message: " Invalid credentials!",
+        });
+      }else{
+        return res.status(200).json({
+          status: 200,
+          message: "Logged in",
+          data:userInfo,
+          token: accessToken
+        });
+      }
+    }
+  } 
