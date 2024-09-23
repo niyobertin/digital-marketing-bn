@@ -19,7 +19,6 @@ const userSchema = new Schema(
      },
      secondName: {
         type: String,
-        required: false,
      },
      gender: {
         type: String,
